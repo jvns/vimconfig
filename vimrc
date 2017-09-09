@@ -222,3 +222,22 @@ function! HasPaste()
     endif
     return ''
 endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugins
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+call plug#begin('~/.vim/plugged')
+
+" Make sure you use single quotes
+
+Plug 'jremmen/vim-ripgrep'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+call plug#end()
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugin: fzf
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+map <C-p> :Files<cr>
