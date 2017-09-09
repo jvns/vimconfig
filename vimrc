@@ -235,9 +235,9 @@ endif
 
 " Make sure you use single quotes
 
-Plug 'jremmen/vim-ripgrep'
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session'
+Plug 'jremmen/vim-ripgrep' , {'commit': 'da940c29ac97dcb025696491c422b6d8545e3e10'}
+Plug 'xolox/vim-misc' , {'commit': '3e6b8fb6f03f13434543ce1f5d24f6a5d3f34f0b'}
+Plug 'xolox/vim-session', {'commit': '9e9a6088f0554f6940c19889d0b2a8f39d13f2bb'}
 Plug 'junegunn/fzf', { 'commit': 'e1582b8323a70785d7ebefce993df7474a28e749'}
 Plug 'junegunn/fzf.vim', { 'commit': 'd3b9fed9c2415a2682cb1c8604e25a351325c22b'}
 
