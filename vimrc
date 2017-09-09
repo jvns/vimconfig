@@ -227,13 +227,19 @@ endfunction
 " => Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-call plug#begin('~/.vim/plugged')
+if has('nvim')
+  call plug#begin('~/.local/share/nvim/plugged')
+else
+  call plug#begin('~/.vim/plugged')
+endif
 
 " Make sure you use single quotes
 
 Plug 'jremmen/vim-ripgrep'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
+Plug 'junegunn/fzf', { 'commit': 'e1582b8323a70785d7ebefce993df7474a28e749'}
+Plug 'junegunn/fzf.vim', { 'commit': 'd3b9fed9c2415a2682cb1c8604e25a351325c22b'}
 
 call plug#end()
 
@@ -246,3 +252,8 @@ map <C-p> :Files<cr>
 
 " map ctrl+P to ripgrep
 map <C-o> :Rg 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugin: Sessions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:session_autosave = 'no'
