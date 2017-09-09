@@ -236,8 +236,13 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 call plug#end()
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Plugin: fzf
+" => Plugin: fzf & ripgrep
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" map ctrl+p to fzf
 map <C-p> :Files<cr>
+
+" map ctrl+P to ripgrep
+map <C-o> :Rg 
