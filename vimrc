@@ -240,6 +240,7 @@ Plug 'xolox/vim-misc' , {'commit': '3e6b8fb6f03f13434543ce1f5d24f6a5d3f34f0b'}
 Plug 'xolox/vim-session', {'commit': '9e9a6088f0554f6940c19889d0b2a8f39d13f2bb'}
 Plug 'junegunn/fzf', { 'commit': 'e1582b8323a70785d7ebefce993df7474a28e749'}
 Plug 'junegunn/fzf.vim', { 'commit': 'd3b9fed9c2415a2682cb1c8604e25a351325c22b'}
+Plug 'chriskempson/base16-vim'
 
 call plug#end()
 
@@ -257,5 +258,5 @@ map <C-o> :Rg
 " => Plugin: Sessions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:session_autosave = 'no'
-colorscheme base16-julia
+colorscheme base16-solarized-light
 
