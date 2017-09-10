@@ -264,5 +264,10 @@ map <C-o> :Rg
 " => Plugin: Sessions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:session_autosave = 'no'
+autocmd VimLeave * :mksession! ~/.vim/sessions/last.vim
+let hostname = substitute(system('hostname'), '\n', '', '')
+if hostname == "kiwi"
+    let base16colorspace=256
+endif
 colorscheme base16-solarized-light
 
