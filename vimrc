@@ -1,7 +1,8 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Original source:
 " https://raw.githubusercontent.com/amix/vimrc/master/vimrcs/basic.vim
-" it's super good
+" this basic.vim is super good -- not too complicated and has lots of sensible
+" defaults
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
