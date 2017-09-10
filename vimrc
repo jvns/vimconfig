@@ -257,3 +257,5 @@ map <C-o> :Rg
 " => Plugin: Sessions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:session_autosave = 'no'
+colorscheme base16-julia
+
