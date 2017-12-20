@@ -229,6 +229,21 @@ endfunction
 " => start of julia's custom stuff
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" experimental: combine the system & vim clipboards
+set clipboard=unnamedplus
+
+" Cut
+"vnoremap <C-X> "+x
+"vnoremap <C-S-X> "+x
+
+" Copy
+"vnoremap <C-C> "+y
+"vnoremap <C-S-C> "+y
+
+" Paste
+"map <C-S-V>       "+gP
+"cmap <C-S-V>      <C-R>+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => persistent undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -292,4 +307,9 @@ elseif hostname == "st-julia2.lan"
     let g:fzf_launcher = "~/bin/macvim-iterm2 %s"
 endif
 colorscheme base16-solarized-light
+"colorscheme base16-paraiso
 
+nmap <Leader>n :noh<CR>
+nmap <Leader>m :make<CR>
+
+hi statusline guibg=Purple ctermfg=5 guifg=Black ctermbg=0
