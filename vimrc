@@ -312,4 +312,4 @@ colorscheme base16-solarized-light
 nmap <Leader>n :noh<CR>
 nmap <Leader>m :make<CR>
 
-hi statusline guibg=Purple ctermfg=5 guifg=Black ctermbg=0
+hi statusline guibg=Purple ctermfg=0 guifg=White ctermbg=5
