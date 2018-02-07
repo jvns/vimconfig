@@ -313,3 +313,5 @@ nmap <Leader>n :noh<CR>
 nmap <Leader>m :make<CR>
 
 hi statusline guibg=Purple ctermfg=0 guifg=White ctermbg=5
+
+:let g:session_autoload = 'no'
