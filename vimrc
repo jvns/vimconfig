@@ -108,6 +108,7 @@ set background=light
 
 " Set extra options when running in GUI mode
 if has("gui_running")
+    set guifont=Inconsolata\ Medium\ 14
     set guioptions-=T
     set guioptions-=e
     set t_Co=256
@@ -143,11 +144,11 @@ set tabstop=4
 
 " Linebreak on 500 characters
 set lbr
-set tw=100
+set tw=0
 
 set ai "Auto indent
 set si "Smart indent
-set wrap "Wrap lines
+set nowrap "Wrap lines
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
@@ -264,15 +265,17 @@ else
 endif
 
 " Make sure you use single quotes
-
 Plug 'jremmen/vim-ripgrep' , {'commit': 'da940c29ac97dcb025696491c422b6d8545e3e10'}
 Plug 'xolox/vim-misc' , {'commit': '3e6b8fb6f03f13434543ce1f5d24f6a5d3f34f0b'}
 Plug 'xolox/vim-session', {'commit': '9e9a6088f0554f6940c19889d0b2a8f39d13f2bb'}
 Plug 'junegunn/fzf', { 'commit': 'e1582b8323a70785d7ebefce993df7474a28e749'}
 Plug 'junegunn/fzf.vim', { 'commit': 'd3b9fed9c2415a2682cb1c8604e25a351325c22b'}
 Plug 'chriskempson/base16-vim', { 'commit': '2d991f14f688a38b7b2bcd397bad5efadd0f80a9'}
+Plug 'tikhomirov/vim-glsl', { 'commit': '697eca9784ffac39308e1fd45e0300582c3d060b'}
+Plug 'leafgarland/typescript-vim', { 'commit': '5a319ea5504e18215d155576c78d1b7fb8e22c8f'}
 Plug 'mhinz/vim-startify'
 Plug 'airblade/vim-gitgutter'
+Plug 'posva/vim-vue'
 
 call plug#end()
 
