@@ -276,6 +276,8 @@ Plug 'leafgarland/typescript-vim', { 'commit': '5a319ea5504e18215d155576c78d1b7f
 Plug 'mhinz/vim-startify'
 Plug 'airblade/vim-gitgutter'
 Plug 'posva/vim-vue'
+Plug 'gorodinskiy/vim-coloresque'
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
 
@@ -318,3 +320,8 @@ nmap <Leader>m :make<CR>
 hi statusline guibg=Purple ctermfg=0 guifg=White ctermbg=5
 
 :let g:session_autoload = 'no'
+
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+
+let g:vimwiki_list = [{'path': '~/work/wiki/', 'path_html': '~/work/wiki/public/', 'auto_diary_index': 1, 'ext': '.md'}]
