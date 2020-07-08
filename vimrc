@@ -276,7 +276,7 @@ Plug 'leafgarland/typescript-vim', { 'commit': '5a319ea5504e18215d155576c78d1b7f
 Plug 'mhinz/vim-startify'
 Plug 'airblade/vim-gitgutter'
 Plug 'posva/vim-vue'
-Plug 'gorodinskiy/vim-coloresque'
+"Plug 'gorodinskiy/vim-coloresque'
 Plug 'vimwiki/vimwiki'
 
 call plug#end()
@@ -324,4 +324,31 @@ hi statusline guibg=Purple ctermfg=0 guifg=White ctermbg=5
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
-let g:vimwiki_list = [{'path': '~/work/wiki/', 'path_html': '~/work/wiki/public/', 'auto_diary_index': 1, 'ext': '.md'}]
+let g:vimwiki_list = [{
+	\ 'path': '~/work/wiki',
+	\ 'path_html': '~/work/wiki/public/',
+    \ 'auto_diary_index': 1, 
+	\ 'template_path': '~/work/wiki/templates/',
+	\ 'template_default': 'julia',
+	\ 'syntax': 'markdown',
+	\ 'ext': '.md',
+	\ 'custom_wiki2html': 'vimwiki_markdown',
+	\ 'template_ext': '.tpl'}]
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => wrap stuff for markdown
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+function SetWrap() 
+    setlocal wrap linebreak nolist
+    noremap  <buffer> <silent> k gk
+    noremap  <buffer> <silent> j gj
+    noremap  <buffer> <silent> ^ g^
+    noremap  <buffer> <silent> $  g$
+    nnoremap <buffer> <silent> dl g0dg$
+    setlocal display+=lastline
+    set virtualedit=
+    setlocal showbreak=↪\ 
+endfunction
+
+autocmd Filetype markdown call SetWrap()
