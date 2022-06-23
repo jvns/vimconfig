@@ -231,7 +231,17 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " combine the system & vim clipboards
-set clipboard=unnamedplus
+" check if we're on linux
+if has("unix")
+  let s:uname = system("uname -s")
+  if s:uname == "Darwin\n"
+    " Do Mac stuff here
+    set clipboard=unnamed
+  else
+
+    set clipboard=unnamedplus
+  endif
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => persistent undo
