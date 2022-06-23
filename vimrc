@@ -209,7 +209,7 @@ endif
 " => New tab
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Quickly open a buffer for scribble
-map <leader>t :tabnew<cr>
+"map <leader>t :tabnew<cr>
 
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
@@ -230,20 +230,8 @@ endfunction
 " => start of julia's custom stuff
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" experimental: combine the system & vim clipboards
+" combine the system & vim clipboards
 set clipboard=unnamedplus
-
-" Cut
-"vnoremap <C-X> "+x
-"vnoremap <C-S-X> "+x
-
-" Copy
-"vnoremap <C-C> "+y
-"vnoremap <C-S-C> "+y
-
-" Paste
-"map <C-S-V>       "+gP
-"cmap <C-S-V>      <C-R>+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => persistent undo
@@ -266,18 +254,12 @@ endif
 
 " Make sure you use single quotes
 Plug 'jremmen/vim-ripgrep' , {'commit': 'da940c29ac97dcb025696491c422b6d8545e3e10'}
-Plug 'xolox/vim-misc' , {'commit': '3e6b8fb6f03f13434543ce1f5d24f6a5d3f34f0b'}
-Plug 'xolox/vim-session', {'commit': '9e9a6088f0554f6940c19889d0b2a8f39d13f2bb'}
 Plug 'junegunn/fzf', { 'commit': 'e1582b8323a70785d7ebefce993df7474a28e749'}
 Plug 'junegunn/fzf.vim', { 'commit': 'd3b9fed9c2415a2682cb1c8604e25a351325c22b'}
 Plug 'chriskempson/base16-vim', { 'commit': '2d991f14f688a38b7b2bcd397bad5efadd0f80a9'}
-Plug 'tikhomirov/vim-glsl', { 'commit': '697eca9784ffac39308e1fd45e0300582c3d060b'}
-Plug 'leafgarland/typescript-vim', { 'commit': '5a319ea5504e18215d155576c78d1b7fb8e22c8f'}
-Plug 'mhinz/vim-startify'
 Plug 'airblade/vim-gitgutter'
-Plug 'posva/vim-vue'
-"Plug 'gorodinskiy/vim-coloresque'
 Plug 'vimwiki/vimwiki'
+Plug 'dense-analysis/ale' " formatting, linting, LSP
 
 call plug#end()
 
@@ -288,38 +270,18 @@ call plug#end()
 " map ctrl+p to fzf
 map <C-p> :Files<cr>
 
-" map ctrl+o to ripgrep
-map <C-o> :Rg 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Plugin: Sessions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:session_autosave = 'no'
-let g:startify_session_dir = "~/.vim/sessions"
-let g:startify_custom_header =[]
-
-autocmd VimLeave * :mksession! ~/.vim/sessions/last.vim
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => stuff about colours
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let hostname = substitute(system('hostname'), '\n', '', '')
-if hostname == "kiwi"
-    let base16colorspace=256
-elseif hostname == "st-julia2.lan"
-    let base16colorspace=256
-    let g:fzf_launcher = "~/bin/macvim-iterm2 %s"
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
 endif
-colorscheme base16-solarized-light
-"colorscheme base16-paraiso
+
 
 nmap <Leader>n :noh<CR>
-nmap <Leader>m :make<CR>
 
 hi statusline guibg=Purple ctermfg=0 guifg=White ctermbg=5
-
-:let g:session_autoload = 'no'
 
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
@@ -335,20 +297,29 @@ let g:vimwiki_list = [{
 	\ 'custom_wiki2html': 'vimwiki_markdown',
 	\ 'template_ext': '.tpl'}]
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => wrap stuff for markdown
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-function SetWrap() 
-    setlocal wrap linebreak nolist
-    noremap  <buffer> <silent> k gk
-    noremap  <buffer> <silent> j gj
-    noremap  <buffer> <silent> ^ g^
-    noremap  <buffer> <silent> $  g$
-    nnoremap <buffer> <silent> dl g0dg$
-    setlocal display+=lastline
-    set virtualedit=
-    setlocal showbreak=↪\ 
-endfunction
+let g:ale_fixers = {
+ \ 'go': ['gofmt', 'goimports'],
+ \ 'python': ['black'],
+ \ 'rust': ['rustfmt'],
+ \ 'javascript': ['eslint'],
+ \ 'html': ['prettier'],
+ \ 'css': ['prettier'],
+ \ }
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
+let g:ale_fix_on_save = 1
 
-autocmd Filetype markdown call SetWrap()
+let g:ale_linters_explicit = 1
+" https://github.com/dense-analysis/ale/tree/master/ale_linters/python
+let g:ale_linters = {
+ \ 'go': ['gopls'],
+ \ 'python': ['pyright'],
+ \ 'javascript': ['eslint'],
+ \ 'rust': ['rls'],
+ \ }
+
+map <leader>gd :ALEGoToDefinition<cr>
+
+au BufNewFile,BufRead *.twee set filetype=twee 
+autocmd BufNew,BufRead *.nasm set filetype=nasm
