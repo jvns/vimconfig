@@ -317,6 +317,8 @@ let g:ale_linters = {
  \ 'python': ['pyright'],
  \ 'javascript': ['eslint'],
  \ 'rust': ['rls'],
+ \ 'c': ['clangtidy'],
+ \ 'sh': ['shellcheck'],
  \ }
 
 map <leader>gd :ALEGoToDefinition<cr>
