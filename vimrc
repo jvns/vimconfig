@@ -231,7 +231,6 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " combine the system & vim clipboards
-" check if we're on linux
 if has("unix")
   let s:uname = system("uname -s")
   if s:uname == "Darwin\n"
@@ -242,6 +241,7 @@ if has("unix")
     set clipboard=unnamedplus
   endif
 endif
+set clipboard=unnamed
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => persistent undo
@@ -306,16 +306,18 @@ let g:vimwiki_list = [{
 	\ 'ext': '.md',
 	\ 'custom_wiki2html': 'vimwiki_markdown',
 	\ 'template_ext': '.tpl'}]
-
+" make tab work in markdown files
+let g:vimwiki_table_mappings = 0
 
 let g:ale_fixers = {
  \ 'go': ['gofmt', 'goimports'],
  \ 'python': ['black'],
  \ 'rust': ['rustfmt'],
- \ 'javascript': ['eslint'],
- \ 'html': ['prettier'],
+ \ 'javascript': ['deno'],
  \ 'css': ['prettier'],
  \ }
+let g:ale_html_prettier_options = '--embedded-language-formatting=auto'
+let g:ale_javascript_prettier_options = '--embedded-language-formatting=auto'
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️'
 let g:ale_fix_on_save = 1
@@ -325,7 +327,7 @@ let g:ale_linters_explicit = 1
 let g:ale_linters = {
  \ 'go': ['gopls'],
  \ 'python': ['pyright'],
- \ 'javascript': ['eslint'],
+ \ 'javascript': ['deno'],
  \ 'rust': ['rls'],
  \ 'c': ['clangtidy'],
  \ 'sh': ['shellcheck'],
@@ -335,3 +337,4 @@ map <leader>gd :ALEGoToDefinition<cr>
 
 au BufNewFile,BufRead *.twee set filetype=twee 
 autocmd BufNew,BufRead *.nasm set filetype=nasm
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
