@@ -269,7 +269,10 @@ Plug 'junegunn/fzf.vim', { 'commit': 'd3b9fed9c2415a2682cb1c8604e25a351325c22b'}
 Plug 'chriskempson/base16-vim', { 'commit': '2d991f14f688a38b7b2bcd397bad5efadd0f80a9'}
 Plug 'airblade/vim-gitgutter'
 Plug 'vimwiki/vimwiki'
+Plug 'tpope/vim-fugitive'
 Plug 'dense-analysis/ale' " formatting, linting, LSP
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'LnL7/vim-nix'
 
 call plug#end()
 
@@ -313,9 +316,9 @@ let g:ale_fixers = {
  \ 'go': ['gofmt', 'goimports'],
  \ 'python': ['black'],
  \ 'rust': ['rustfmt'],
- \ 'javascript': ['deno'],
- \ 'css': ['prettier'],
+ \ 'javascript': ['prettier'],
  \ }
+" \ 'javascript': ['deno'],
 let g:ale_html_prettier_options = '--embedded-language-formatting=auto'
 let g:ale_javascript_prettier_options = '--embedded-language-formatting=auto'
 let g:ale_sign_error = '❌'
@@ -325,7 +328,7 @@ let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
 " https://github.com/dense-analysis/ale/tree/master/ale_linters/python
 let g:ale_linters = {
- \ 'go': ['gopls'],
+ \ 'go': ['gopls', 'staticcheck'],
  \ 'python': ['pyright'],
  \ 'javascript': ['deno'],
  \ 'rust': ['rls'],
@@ -336,5 +339,9 @@ let g:ale_linters = {
 map <leader>gd :ALEGoToDefinition<cr>
 
 au BufNewFile,BufRead *.twee set filetype=twee 
-autocmd BufNew,BufRead *.nasm set filetype=nasm
-autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+" spellcheck
+map <leader>s :setlocal spell spelllang=en<cr>
+
+lang en_ca.UTF-8
+inoremap <leader>cs <Plug>(copilot-suggest)
+let g:vimwiki_url_maxsave=0
