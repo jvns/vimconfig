@@ -99,11 +99,6 @@ if $COLORTERM == 'gnome-terminal'
     set t_Co=256
 endif
 
-try
-    colorscheme desert
-catch
-endtry
-
 set background=light
 
 " Set extra options when running in GUI mode
@@ -269,7 +264,6 @@ Plug 'junegunn/fzf.vim', { 'commit': 'd3b9fed9c2415a2682cb1c8604e25a351325c22b'}
 Plug 'chriskempson/base16-vim', { 'commit': '2d991f14f688a38b7b2bcd397bad5efadd0f80a9'}
 Plug 'airblade/vim-gitgutter'
 Plug 'vimwiki/vimwiki'
-Plug 'tpope/vim-fugitive'
 Plug 'dense-analysis/ale' " formatting, linting, LSP
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'LnL7/vim-nix'
@@ -282,6 +276,28 @@ call plug#end()
 
 " map ctrl+p to fzf
 map <C-p> :Files<cr>
+
+" map ctrl shift p to fzf then open in new tab
+
+nnoremap <C-S-P> :tabnew<CR>:Files<CR>
+
+"""
+"
+"""
+
+function! TakeScreenshot(name)
+    " Take the screenshot
+    call system('pngpaste static/images/' . a:name . '.png')
+    
+    " Insert the image tag at the current cursor position
+    let l:img_tag = '<img src="/images/' . a:name . '.png">'
+    execute "normal! i" . l:img_tag . "\<Esc>"
+    
+    echo "Screenshot saved and image tag inserted!"
+endfunction
+
+command! -nargs=1 Screenshot call TakeScreenshot(<q-args>)
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => stuff about colours
@@ -343,5 +359,15 @@ au BufNewFile,BufRead *.twee set filetype=twee
 map <leader>s :setlocal spell spelllang=en<cr>
 
 lang en_ca.UTF-8
-inoremap <leader>cs <Plug>(copilot-suggest)
 let g:vimwiki_url_maxsave=0
+" turn off concealing links
+let g:vimwiki_conceallevel=0
+
+let g:copilot_filetypes = {
+\ 'markdown': v:false,
+\ 'md': v:false,
+\ }
+
+set termguicolors
+
+set diffopt+=iwhiteall
