@@ -1,8 +1,9 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Original source:
-" https://raw.githubusercontent.com/amix/vimrc/master/vimrcs/basic.vim
+" https://github.com/amix/vimrc/blob/master/vimrcs/basic.vim
+"
 " this basic.vim is super good -- not too complicated and has lots of sensible
-" defaults
+" defaults (though I think I've deleted most of the mappings it defined)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
